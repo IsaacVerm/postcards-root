@@ -104,6 +104,8 @@ The `.travis.yml` file configures exactly how the continuous integration works. 
 
 ## TO DO
 
-- update tests using the [Postman API](https://docs.api.getpostman.com/) (so collection doesn't has to be exported manually)
 - add [documentation API](https://learning.getpostman.com/docs/postman/api_documentation/intro_to_api_documentation/)
 - automated dependent deployment (deploy first and then run tests)
+- make tests update completely automatic
+  - add environment variables in Travis () to be inserted in the Postman environment file
+  - put script to get Postman collection in `.travis.yml`
