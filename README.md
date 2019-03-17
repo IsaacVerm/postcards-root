@@ -71,10 +71,30 @@ You need too have the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-
 
 The minimum requirement to deploy is to have a `Procfile`. This file can be very minimal. For example, the basic `Procfile` for `postcards-backend` is `web: gunicorn hello:app` where we specify what WGSI server to use (`gunicorn` in this case) and which file contains the Flask app (`hello.py` in this case).
 
-To deploy there are two steps:
+### Manual deployment
 
+To manually deploy these are [the steps](https://devcenter.heroku.com/articles/getting-started-with-python):
+
+- login to Heroku: `heroku login`
+- create an app (assuming none have been created yet): `heroku create APP`
 - push code to git repository used by Heroku: `git push heroku`
-- run the deployment command: `heroku create appname`
+
+The app can be opened with `heroku open`. If you're already logged in or already created an app the only thing you have to do is pushing your code and the application is rebuild automatically.
+
+By convention we name the app after the repository so APP for e.g. `postcards-backend` will be named `postcards-backend`.
+
+### Automated deployment
+
+You can also [deploy automatically](https://docs.travis-ci.com/user/deployment/heroku/). For this to work you need an encrypted Heroku key in your `.travis.yml` file. 
+
+Make sure to have both the Heroku CLI and Travis CLI installed:
+
+* instructions for Heroku CLI just above
+* Travis CLI: `gem install travis` (make sure to have Ruby installed)
+
+Once you have those CLIs you can use this command to encrypt the key. Make sure you run this command in the repository you have the `.travis.yml` file.
+
+`travis encrypt $(heroku auth:token) --add deploy.api_key`
 
 ## Continuous integration
 
